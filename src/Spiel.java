@@ -2,23 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Spiel {
-    static Validierung validate = new Validierung();
-    static Ausgabe display = new Ausgabe();
-    static Pruefung isWinner = new Pruefung();
+    public Spielfeld spielfeld = new Spielfeld();
 
 
 
-    public static void Felder(){
+    public void Felder(){
         Scanner in = new Scanner(System.in);
         Random ai = new Random();
 
-        char[][] spielfeld = new char[6][7];
+        //char[][] spielfeld = new char[6][7];
 
-        for (int row = 0; row < spielfeld.length; row++){
-            for (int col = 0; col < spielfeld[0].length; col++){
-                spielfeld[row][col] = ' ';
-            }
-        }
+
         int turn = 1;
         char player = 'R';
         char AI = 'B';
@@ -30,30 +24,34 @@ public class Spiel {
             int play;
             int aiplay;
 
+
             do {
-                display.display(spielfeld);
+                spielfeld.display();
                 System.out.print("Spieler Rot wähle eine Spalte aus: ");
                 play = in.nextInt();
                 aiplay = ai.nextInt(7);
 
-                validPlay = validate.validate(play,spielfeld);
+                validPlay = spielfeld.validate(play);
 
             }while (!validPlay);
 
 
-            for (int row = spielfeld.length-1; row >= 0; row--){
-                if(spielfeld[row][play] == ' '){
-                    spielfeld[row][play] = player;
+            spielfeld.setValueIntoFieldComputer(play, player);
+            /*for (int row = spielfeld.feld.length-1; row >= 0; row--){
+                if(spielfeld.feld[row][play] == ' '){
+                    spielfeld.feld[row][play] = player;
                     break;
                 }
             }
-            for (int row = spielfeld.length-1; row >= 0; row--){
-                if(spielfeld[row][aiplay] == ' '){
-                    spielfeld[row][aiplay] = AI;
+                        spielfeld.setValueIntoFieldPlayer(play,player);
+*/
+            for (int row = spielfeld.feld.length-1; row >= 0; row--){
+                if(spielfeld.feld[row][aiplay] == ' '){
+                    spielfeld.feld[row][aiplay] = AI;
                     break;
                 }
             }
-            winner = isWinner.isWinner(player,spielfeld);
+            winner = this.isWinner(player);
             turn++;
         }
 
@@ -67,6 +65,11 @@ public class Spiel {
         }else{
             System.out.println("Unentschieden");
         }
+    }
+
+    public boolean isWinner(char player)
+    {
+        return spielfeld.has4(player);
     }
 }
 
