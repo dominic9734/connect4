@@ -1,6 +1,10 @@
 public class Spielfeld {
     public char[][] feld = new char[6][7];
 
+    public static final String RED = "\033[0;31m";
+    public static final String RESET = "\033[0m";
+    public static final String BLUE = "\033[0;34m";
+
     public void display(){
         System.out.println("   _____                            _     _  _   \n" +
                 "  / ____|                          | |   | || |  \n" +
@@ -10,18 +14,22 @@ public class Spielfeld {
                 "  \\_____\\___/|_| |_|_| |_|\\___|\\___|\\__|    |_|  \n" +
                 "                                                 \n" +
                 "                                                 ");
-        System.out.println(" 0 1 2 3 4 5 6");
-        System.out.println("---------------");
+        System.out.println("     1     2     3     4     5     6     7");
+        System.out.println("  |—————|—————|—————|—————|—————|—————|—————|");
         for (char[] chars : feld) {
-            System.out.print("|");
+            System.out.print("  |  ");
             for (int col = 0; col < feld[0].length; col++) {
-                System.out.print(chars[col]);
-                System.out.print("|");
+                if (chars[col] == 'R') {
+                    System.out.print(RED + (chars[col]) + RESET);
+                } else {
+                    System.out.print(BLUE + (chars[col]) + RESET);
+                }
+                System.out.print("  |  ");
             }
             System.out.println();
-            System.out.println("---------------");
+            System.out.println("  |—————|—————|—————|—————|—————|—————|—————|");
         }
-        System.out.println(" 0 1 2 3 4 5 6");
+        System.out.println("     1     2     3     4     5     6     7");
     }
 
     public Spielfeld()
@@ -78,7 +86,7 @@ public class Spielfeld {
         return false;
     }
 
-    public void setValueIntoFieldComputer(int aiplay, char AI){
+    public void setValueIntoField(int aiplay, char AI){
         for (int row = feld.length-1; row >= 0; row--){
             if(feld[row][aiplay] == ' '){
                 feld[row][aiplay] = AI;
@@ -86,7 +94,7 @@ public class Spielfeld {
             }
         }
     }
-    /*
+
     public void setValueIntoFieldPlayer(int play, char player){
         for (int row = feld.length-1; row >= 0; row--){
             if(feld[row][play] == ' '){
@@ -95,7 +103,7 @@ public class Spielfeld {
             }
         }
     }
-     */
+
 
     public boolean validate(int column){
         if (column < 0 || column > feld[0].length){
@@ -105,3 +113,5 @@ public class Spielfeld {
         return true;
     }
 }
+
+
