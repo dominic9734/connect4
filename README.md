@@ -4,6 +4,6 @@ Vier gewinnt (englisch: Connect Four oder Captain's mistress) ist ein Zweiperson
 Wir haben das spiel in Java umgesetzt, sodass man gegen den Computer spielen kann.
 
 
-Das spiel kann eingaben bearbeiten und gewinner berechen
+Das Spiel kann Eingaben bearbeiten und Gewinner berechen
 
-Das Project wurde in einer kooperation zwischen Samuel Gutmans und Dominic Leuthardt in der Projektwoche des 2. IMS Schuljahres entwickelt
+Das Projekt wurde in einer Kooperation zwischen Samuel Gutmans und Dominic Leuthardt in der Projektwoche des 2. IMS Schuljahres entwickelt
